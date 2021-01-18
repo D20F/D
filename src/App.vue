@@ -1,20 +1,20 @@
 <template>
-    <div id="app">
-        <router-view />sasasa
-    </div>
-    
+    <!-- 布局 -->
+    <layout />
 </template>
 
 <script>
+import layout from "@/layout";
+
 export default {
     name: "App",
-
-    components: {},
-
-    data: () => ({
-        //
-    }),
+    components: {
+        layout,
+    },
+    data() {
+        return {};
+    },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 </style>

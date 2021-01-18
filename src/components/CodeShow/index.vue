@@ -1,49 +1,99 @@
 <template>
     <div class="box">
-        <div class="topbar">
-            <div class="left">
-                <slot name="title" />
-                <p>{{ list.title }}</p>
-            </div>
-            <div class="right">
-                <p>选项</p>
-                <div style="display: flex">
-                    <div @click="copy" v-hover-tip="['复制代码']">
-                        <v-icon> mdi-content-copy </v-icon>
-                    </div>
-                    <div @click="unfold" v-hover-tip="['查看源代码']">
-                        <v-icon> mdi-arrow-top-right-bottom-left </v-icon>
-                    </div>
+        <v-row justify="center">
+            <v-col cols="12" class="topbar">
+                <p> {{list.title}} </p>
+                <v-spacer></v-spacer>
+
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn icon v-bind="attrs" v-on="on">
+                            <v-icon> mdi-github </v-icon>
+                        </v-btn>
+                    </template>
+                    <span>github</span>
+                </v-tooltip>
+
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn @click="copy" icon v-bind="attrs" v-on="on">
+                            <v-icon> mdi-content-copy</v-icon>
+                        </v-btn>
+                    </template>
+                    <span>复制代码</span>
+                </v-tooltip>
+
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn @click="unfold" icon v-bind="attrs" v-on="on">
+                            <v-icon> mdi-iframe-braces-outline </v-icon>
+                        </v-btn>
+                    </template>
+                    <span>查看源代码</span>
+                </v-tooltip>
+            </v-col>
+
+            <v-col
+                cols="12"
+                class="tabbar"
+                :class="code_class"
+                :style="{ height: tabbar_height + 'px' }"
+            >
+                <div>
+                    <v-col cols="12" class="py-2 bb">
+                        <v-btn-toggle
+                            v-model="code_type"
+                            dense
+                            color="deep-purple accent-3"
+                            group
+                            mandatory
+                        >
+                            <v-btn
+                                @click="calculated_height"
+                                v-show="list.template !== ''"
+                                value="template"
+                            >
+                                template
+                            </v-btn>
+                            <v-btn
+                                @click="calculated_height"
+                                v-show="list.js !== ''"
+                                value="js"
+                            >
+                                js
+                            </v-btn>
+                            <v-btn
+                                @click="calculated_height"
+                                v-show="list.style !== ''"
+                                value="style"
+                            >
+                                style
+                            </v-btn>
+                        </v-btn-toggle>
+                    </v-col>
+
+                    <pre v-show="code_type == 'template'">
+                        <code class="language-javascript">
+                            {{list.template}}
+                        </code> 
+                    </pre>
+                    <pre v-show="code_type == 'js'">
+                        <code class="language-javascript">
+                            {{list.js}}
+                        </code>
+                    </pre>
+                    <pre v-show="code_type == 'style'">
+                        <code class="language-css" >
+                            {{list.style}}
+                        </code>
+                    </pre>
                 </div>
-            </div>
-        </div>
-        <div class="content">
-            <div class="left">
+            </v-col>
+
+            <v-col cols="12" class="content">
                 <slot name="content" />
-            </div>
-            <div class="right">
-                <slot name="select" />
-            </div>
-        </div>
-        <div
-            class="tabbar"
-            :class="code_class"
-            :style="{ height: tabbar_height + 'px' }"
-        >
-            <!-- <slot name="code" /> -->
-            <div>
-                <pre>
-                <code class="language-javascript " >
-                    {{list.js}}
-                </code>
-            </pre>
-                <pre v-if="list.style">
-                <code class="language-css " >
-                    {{list.style}}
-                </code>
-            </pre>
-            </div>
-        </div>
+            </v-col>
+        </v-row>
     </div>
 </template>
 
@@ -51,7 +101,8 @@
 
 
 <script>
-import { random, select, selectCopy } from "@/utils/tool/index";
+import { random, selectCopy } from "@/utils/tool/index";
+import { notify } from "@/utils/tool/notify";
 export default {
     name: "CodeShow",
     props: {
@@ -59,9 +110,8 @@ export default {
             type: Object,
             default: () => {
                 return {
-                    render: "",
-                    select: "",
                     name: "",
+                    template: "",
                     js: "",
                     style: "",
                     title: "",
@@ -71,31 +121,52 @@ export default {
     },
     data() {
         return {
-            tabbar_height: "30",
+            tabbar_height: "0",
             max_height: "",
             code_class: "",
+            code_type: "template",
         };
     },
     computed: {},
-    mounted() {
-        this.code_class = random(8);
-        this.$nextTick(() => {
-            this.max_height = document.querySelector(
-                "." + this.code_class
-            ).firstElementChild.clientHeight;
-        });
+
+    created() {
+        this.code_class = random(12); //随机class
+        this.init();
     },
-    created() {},
     methods: {
+        init() {
+            //初始化代码块高度
+            this.$nextTick(() => {
+                this.max_height = document.querySelector(
+                    "." + this.code_class
+                ).firstElementChild.clientHeight;
+            });
+        },
+        calculated_height() {
+            setTimeout(() => {
+                this.$nextTick(() => {
+                    this.max_height = document.querySelector(
+                        "." + this.code_class
+                    ).firstElementChild.clientHeight;
+                    this.tabbar_height = this.max_height;
+                    console.log(this.tabbar_height);
+                });
+            }, 0);
+        },
         copy() {
-            let dom = document.querySelector('.' + this.code_class)
-            selectCopy(dom)
+            let dom = document.querySelector("." + this.code_class);
+            selectCopy(dom);
+            this.$store.dispatch("system/add_notify", {
+                type: "success",
+                data: "复制成功",
+                time: 2000,
+            });
         },
         unfold() {
-            if (this.tabbar_height == "30") {
-                this.tabbar_height = this.max_height + 48;
+            if (this.tabbar_height == "0") {
+                this.tabbar_height = this.max_height;
             } else {
-                this.tabbar_height = "30";
+                this.tabbar_height = "0";
             }
         },
     },
@@ -104,9 +175,8 @@ export default {
 
 <style lang="scss" scoped>
 .box {
-    width: 80%;
-    min-height: 190px;
-    margin: 0 auto 20px auto;
+    width: 100%;
+    margin: 0 auto 30px auto;
     position: relative;
     div {
         position: relative;
@@ -114,7 +184,7 @@ export default {
 }
 .topbar {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
     height: 40px;
@@ -123,31 +193,6 @@ export default {
     border-right: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
     border-radius: 4px 4px 0 0;
-    .left {
-        width: 70%;
-        height: 100%;
-        border-right: 1px solid #e0e0e0;
-        display: flex;
-        padding: 0 10px;
-        justify-content: left;
-        align-items: center;
-        p {
-        }
-    }
-    .right {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 10px;
-        width: 30%;
-        height: 100%;
-        p {
-            justify-content: left;
-        }
-        div {
-            justify-content: right;
-        }
-    }
 }
 .content {
     display: flex;
@@ -158,33 +203,20 @@ export default {
     border-left: 1px solid #e0e0e0;
     border-right: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
-    .left {
-        width: 70%;
-        min-height: 100px;
-        background: #fafafa;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .right {
-        padding: 10px 10px;
-
-        width: 30%;
-        height: 100%;
-        min-height: 100px;
-        border-left: 1px solid #e0e0e0;
-    }
 }
 .tabbar {
     background: #fafafa;
-    padding: 10px 10px;
     width: 100%;
     overflow: hidden;
     border-radius: 0 0 4px 4px;
     border-left: 1px solid #e0e0e0;
     border-right: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
-
+    padding: 0;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.6, 1);
+}
+.theme--light.v-application code {
+    background-color: transparent;
+    color: currentColor;
 }
 </style>

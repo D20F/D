@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { showTip_div } from '@/utils/directive/show'
+import { showTip_div } from '@/utils/tool/notify'
 
 // 选中复制
 Vue.directive('copy-select', {

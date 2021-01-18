@@ -1,31 +1,21 @@
-import { resetRouter } from '@/router'
 
-const getDefaultState = () => {
-  return {
-    token: '',
-    name: '',
-    avatar: '',
-    routerOption: [] // router 路由
 
-  }
-}
+const user = {
+    state: () => ({
 
-const state = getDefaultState()
 
-const mutations = {
+    }),
+    mutations: {
 
-}
+    },
+    actions: {
 
-const actions = {
-  
+    },
+    modules: {
 
+    },
+    namespaced: true,
 
 }
-
-export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions
-}
+export default user
 

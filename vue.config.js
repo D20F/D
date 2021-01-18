@@ -25,7 +25,7 @@ module.exports = {
         }
     },
     'configureWebpack': {
-        'name': '管理后台',
+        'name': 'D20F 文档',
         'resolve': {
             'alias': {
                 '@': resolve('src')

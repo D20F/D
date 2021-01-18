@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { showTip_div } from '@/utils/directive/show'
+import { showTip_div } from '@/utils/tool/notify'
 
 /**
  * phone 手机号检测

@@ -1,0 +1,78 @@
+<template>
+    <v-app>
+        <v-app-bar
+            app
+            clipped-left
+            clipped-right
+            flat
+            color="#FFFFFF"
+            style="border-bottom: 1px solid rgba(0, 0, 0, 0.12)"
+        >
+            <bar @drawer_fold_F="drawer_fold_F" />
+        </v-app-bar>
+
+        <v-navigation-drawer app clipped v-model="drawer_fold" floating>
+            <drawer />
+        </v-navigation-drawer>
+
+        <v-navigation-drawer right app clipped floating>
+            <drawer />
+        </v-navigation-drawer>
+
+        <v-main>
+            <v-container fluid>
+                <container />
+                <router-view></router-view>
+            </v-container>
+        </v-main>
+
+
+        <!-- <v-footer app>
+            <footer />
+        </v-footer> -->
+
+        <!-- 提示 -->
+        <notify />
+    </v-app>
+</template>
+<script>
+import bar from "@/layout/component/bar";
+import drawer from "@/layout/component/drawer/index";
+import container from "@/layout/component/container";
+import footer from "@/layout/component/footer";
+import catalogue from "@/layout/component/catalogue";
+import notify from "@/components/notify";
+
+export default {
+    components: {
+        bar,
+        drawer,
+        container,
+        footer,
+        catalogue,
+        notify,
+    },
+    data() {
+        return {
+            drawer_fold: true,
+        };
+    },
+    mixins: [],
+    computed: {},
+    methods: {
+        drawer_fold_F() {
+            this.drawer_fold
+                ? (this.drawer_fold = false)
+                : (this.drawer_fold = true);
+            console.log(this.drawer_fold);
+        },
+    },
+};
+</script>
+
+<style lang="scss" >
+.v-application p {
+    margin: 0;
+    padding: 0;
+}
+</style>
