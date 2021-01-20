@@ -1,8 +1,8 @@
 <template>
     <div class="box">
-        <v-row justify="center">
+        <v-row justify="center" style="width: 100%; margin: 0 auto">
             <v-col cols="12" class="topbar">
-                <p> {{list.title}} </p>
+                <p>{{ list.title }}</p>
                 <v-spacer></v-spacer>
 
                 <v-tooltip bottom>
@@ -102,7 +102,6 @@
 
 <script>
 import { random, selectCopy } from "@/utils/tool/index";
-import { notify } from "@/utils/tool/notify";
 export default {
     name: "CodeShow",
     props: {

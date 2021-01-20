@@ -2,7 +2,7 @@
     <div class="topbar">
         <v-app-bar-nav-icon @click="drawer_fold_F"></v-app-bar-nav-icon>
 
-        <v-toolbar-title>D文档</v-toolbar-title>
+        <v-toolbar-title>D</v-toolbar-title>
         <v-spacer></v-spacer>
 
         <v-tooltip bottom>

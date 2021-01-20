@@ -16,20 +16,25 @@
         </v-navigation-drawer>
 
         <v-navigation-drawer right app clipped floating>
-            <drawer />
+            <catalogue />
         </v-navigation-drawer>
 
         <v-main>
-            <v-container fluid>
-                <container />
-                <router-view></router-view>
+            <v-container style="margin-top: 10px;" fluid>
+                <v-responsive
+                    :aspect-ratio="16 / 9"
+                    :max-width="868"
+                    class="v-responsive mx-auto overflow-visible"
+                >
+                    <container />
+                    <router-view></router-view>
+                </v-responsive>
             </v-container>
         </v-main>
 
-
-        <!-- <v-footer app>
-            <footer />
-        </v-footer> -->
+        <v-footer app>
+            <footers />
+        </v-footer>
 
         <!-- 提示 -->
         <notify />
@@ -38,19 +43,17 @@
 <script>
 import bar from "@/layout/component/bar";
 import drawer from "@/layout/component/drawer/index";
+import catalogue from "@/layout/component/catalogue/index";
 import container from "@/layout/component/container";
-import footer from "@/layout/component/footer";
-import catalogue from "@/layout/component/catalogue";
-import notify from "@/components/notify";
+import footers from "@/layout/component/footer";
 
 export default {
     components: {
         bar,
         drawer,
         container,
-        footer,
+        footers,
         catalogue,
-        notify,
     },
     data() {
         return {

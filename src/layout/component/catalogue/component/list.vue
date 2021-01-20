@@ -8,7 +8,7 @@
         <sider-item v-for="(item, i) in list.child" :key="i" :list="item" />
     </v-list-group>
 
-    <v-list-item   link v-else :to="list.to">
+    <v-list-item   link v-else @click="jump" :to="list.to">
         <v-list-item-content>
             <v-list-item-title v-text="list.text"></v-list-item-title>
         </v-list-item-content>
@@ -35,6 +35,10 @@ export default {
     created() {},
     computed: {},
     methods: {
+        jump(m, k) {
+            console.log(m);
+            console.log(k);
+        },
     },
 };
 </script>

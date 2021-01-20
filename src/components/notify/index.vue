@@ -36,7 +36,6 @@ export default {
 <style lang="scss" scoped>
 .box {
     z-index: 100;
-
     position: fixed;
     top: 30px;
     left: 50%;

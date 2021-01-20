@@ -2,7 +2,8 @@
 
 const system = {
     state: () => ({
-        notifyData: []
+        notifyData: [],
+        catalogueData: []
 
     }),
     mutations: {
@@ -11,12 +12,19 @@ const system = {
             setTimeout(() => {
                 state.notifyData.shift();
             }, data.time);
-        }
+        },
+        TOG_CATALOGUE: (state, data) => {
+            state.catalogueData = data;
+     
+        },
     },
     actions: {
         add_notify({ commit }, data) {
             commit('ADD_NOTIFY', data)
-        }
+        },
+        tog_catalogue({ commit }, data) {
+            commit('TOG_CATALOGUE', data)
+        },
     },
     modules: {
 

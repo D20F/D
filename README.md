@@ -9,7 +9,8 @@
     ├─ mixins               混入
     ├─ icons                图标
     ├─ layout               布局
-    ├─ plugins              设置
+    ├─ plugins              外挂程序设置
+    ├─ config               配置
     ├─ router               路由
     ├─ styles               公共css
     ├─ store                vuex
@@ -34,5 +35,10 @@ vue-countTo
 npm i @antv/data-set
 npm i viser-vue
 
+两个侧边栏的设置
+看和页面里的要合并吗
+
+.v-application .primary--text
 
 
+名词 复习 完成

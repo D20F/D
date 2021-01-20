@@ -24,6 +24,7 @@
 
 <script>
 import siderItem from "./component/list";
+import sider_list from "./index";
 export default {
     components: {
         siderItem: siderItem,
@@ -31,43 +32,7 @@ export default {
     mixins: [],
     data() {
         return {
-            sider_list: [
-                {
-                    text: "Real-Time",
-                    icon: "mdi-file-code-outline",
-                    child: [
-                        { text: "Real-cog" },
-                        {
-                            text: "Real-plus",
-                            child: [
-                                {
-                                    text: "Real-account",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    text: "Update",
-                    icon: "mdi-emoticon-lol-outline",
-                    child: [{ text: "Delete" }],
-                },
-                {
-                    text: "Update",
-                    icon: "mdi-emoticon-poop",
-                    child: [{ text: "Delete" }],
-                },
-                {
-                    text: "Update",
-                    icon: "mdi-emoticon-tongue-outline",
-                    child: [{ text: "Delete" }],
-                },
-                {
-                    text: "Update",
-                    icon: "mdi-emoticon-kiss-outline",
-                    child: [{ text: "Delete" }],
-                },
-            ],
+            sider_list: sider_list,
         };
     },
     computed: {},
