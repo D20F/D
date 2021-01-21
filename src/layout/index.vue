@@ -41,11 +41,11 @@
     </v-app>
 </template>
 <script>
-import bar from "@/layout/component/bar";
-import drawer from "@/layout/component/drawer/index";
-import catalogue from "@/layout/component/catalogue/index";
-import container from "@/layout/component/container";
-import footers from "@/layout/component/footer";
+import bar from "./component/bar";
+import drawer from "./component/drawer/index.vue";
+import catalogue from "./component/catalogue/index.vue";
+import container from "./component/container";
+import footers from "./component/footer";
 
 export default {
     components: {
@@ -67,7 +67,6 @@ export default {
             this.drawer_fold
                 ? (this.drawer_fold = false)
                 : (this.drawer_fold = true);
-            console.log(this.drawer_fold);
         },
     },
 };

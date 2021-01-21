@@ -45,8 +45,6 @@ export default {
                 // item.clientHeight = document.getElementById(item.id).clientHeight;
                 item.id = item.id;
             }
-
-            console.log(data);
             return this.$store.state.system.catalogueData;
         },
     },

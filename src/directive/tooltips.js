@@ -4,7 +4,7 @@ import Vue from 'vue'
 
 
 // 触碰 显示提示
-Vue.directive('hover-tip', {
+Vue.directive('tooltips', {
     bind: function (el, binding, vnode) {
         let data
         let width
@@ -17,42 +17,34 @@ Vue.directive('hover-tip', {
         let n = 4;
         for (var i = 0; i < n; i++) { idvalue += arr[Math.floor(Math.random() * 26)]; }
 
-
         el.hoverTip = document.createElement("style");
         let str = `
                     .hover-tips-${idvalue}{
                         cursor:pointer;                     
                         padding: 5px;
                     }
-                    .hover-tips-${idvalue}:hover{
-                        background-color: #e0e0e0;
-                        border-radius: 50%;
-                    }
+                    .hover-tips-${idvalue}:hover{}
                     .hover-tips-${idvalue}:after{
                         position: absolute;
-                        top: 200%;
+                        top: 100%;
                         left: 50%;
-                        transform: translate(-50%, 0%);
-                        padding: 13.5px 4px 0px 4px;
-                        text-align: center;
-                        border-radius: 5px;
-                        color:#ffffff;
+                        transform: translate(-50%, 15px);
                         content: "${data}";
                         z-index: 2;
-                        width: 0px; 
-                        height: 0px;   
                         opacity: 0;      
                         font-size:13px;              
                         background-color: rgba(0, 0, 0, 0.5);
                         pointer-events: none;
+                        width: 0px; 
+                        height: 0px;   
                         transition: all .2s cubic-bezier(.4,0,.6,1);
                     }
                     .hover-tips-${idvalue}:hover:after{
                         position: absolute;
-                        top: 150%;
+                        top: 100%;
                         left: 50%;
-                        transform: translate(-50%, 0%);
-                        padding: 13.5px 4px 0px 4px;
+                        transform: translate(-50%, 15px);
+                        padding: 12px 4px 0px 4px;
                         text-align: center;
                         border-radius: 5px;
                         color:#ffffff;
@@ -61,8 +53,6 @@ Vue.directive('hover-tip', {
                         width: ${width}; 
                         height: 40px;
                         opacity: 1;      
-                        font-size:13px;              
-                        background-color: rgba(0, 0, 0, 0.5);
                         pointer-events: none;
                         transition: all .2s cubic-bezier(.4,0,.6,1);
                     }

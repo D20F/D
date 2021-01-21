@@ -44,5 +44,5 @@ import Vue from 'vue'
 import './copy'
 import './regular'
 import './debounce'
-import './hover-tip'
+import './tooltips'
 

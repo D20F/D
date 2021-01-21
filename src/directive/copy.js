@@ -21,8 +21,10 @@ Vue.directive('copy-select', {
 Vue.directive('copy-click', {
   bind: function(el, binding, vnode) {
     // console.log('自定义指令绑定数据',binding.expression)
-
     el.handler = () => {
+    console.log(11111111)
+    console.log(binding)
+    console.log(binding.value)
       const input = document.createElement('input')
       input.setAttribute('readonly', 'readonly') // 防止手机上弹出软键盘
       input.setAttribute('value', binding.expression)

@@ -1,24 +1,34 @@
 <template>
-  <div class="dashboard">
-    哈哈哈哈哈哈哈
-      </div>
+    <div class="dashboard">
+        <h2 :id="point[0].id" class="h2">
+            <a>说明</a>
+        </h2>
+    </div>
 </template>
 
 <script>
-
+let point = [
+    {
+        id: "point-1",
+        text: "说明",
+        level: 1,
+    },
+];
 export default {
+    name: "",
+    components: {},
+    mixins: [],
     data() {
         return {
-         
+            point: point,
         };
     },
-    computed: {
-      
+    computed: {},
+    created() {
+        this.$store.dispatch("system/tog_catalogue", this.point);
     },
-    created() {},
-    methods: {
-
-    },
+    mounted() {},
+    methods: {},
 };
 </script>
 

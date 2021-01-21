@@ -45,6 +45,10 @@ export default [
                 text: "防抖节流",
                 to: '/directive/antiShake',
             },
+            {
+                text: "tooltips 提示",
+                to: '/directive/tooltips',
+            },
         ],
     },
 
