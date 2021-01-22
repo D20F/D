@@ -9,7 +9,7 @@ Vue.directive('tooltips', {
         let data
         let width
         binding.value[0] ? data = binding.value[0] : data = '';
-        binding.value[0] ? width = (data.length * 16) + 'px' : width = '100px';
+        binding.value[0] ? width = (data.length * 18) + 'px' : width = '100px';
 
 
         let arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];

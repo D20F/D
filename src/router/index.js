@@ -36,6 +36,10 @@ const routes = [
         path: "/directive/tooltips",
         component: () => import("@/views/directive/tooltips")
     },
+    {
+        path: "/directive/regular",
+        component: () => import("@/views/directive/regular")
+    },
 
     //组件
     {

@@ -27,7 +27,9 @@
                     class="v-responsive mx-auto overflow-visible"
                 >
                     <container />
+
                     <router-view></router-view>
+                    
                 </v-responsive>
             </v-container>
         </v-main>

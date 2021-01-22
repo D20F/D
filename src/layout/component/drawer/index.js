@@ -49,6 +49,10 @@ export default [
                 text: "tooltips 提示",
                 to: '/directive/tooltips',
             },
+            {
+                text: "regular 正则",
+                to: '/directive/regular',
+            },
         ],
     },
 
