@@ -1,69 +1,29 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import vue from './vue'
+import component from './component'
+import directive from './directive'
+import introduction from './introduction'
+import js from './js'
+import react from './react'
+import style from './style'
+
 Vue.use(VueRouter)
 
 const routes = [
-    
-    //介绍
-    {
-        path: "/",
-        component: () => import("@/views/introduction")
-    },
-    
-    //vue
-    {
-        path: "/vue/doubt",
-        component: () => import("@/views/vue/doubt")
-    },
-
-    //react
-    {
-        path: "/react/doubt",
-        component: () => import("@/views/react/doubt")
-    },
-    
-    //指令
-    {
-        path: "/directive/copy",
-        component: () => import("@/views/directive/copy")
-    },
-    {
-        path: "/directive/antiShake",
-        component: () => import("@/views/directive/anti-shake")
-    },
-    {
-        path: "/directive/tooltips",
-        component: () => import("@/views/directive/tooltips")
-    },
-    {
-        path: "/directive/regular",
-        component: () => import("@/views/directive/regular")
-    },
-
-    //组件
-    {
-        path: "/ui/card",
-        component: () => import("@/views/ui/card")
-    },
-
-    //样式
-    {
-        path: "/style/layout",
-        component: () => import("@/views/style/layout")
-    },
-    
-    //JS 
-    {
-        path: "/js/doubt",
-        component: () => import("@/views/js/doubt")
-    },
-
+    ...vue,
+    ...component,
+    ...directive,
+    ...introduction,
+    ...js,
+    ...react,
+    ...style,
 ]
 
 
 const router = new VueRouter({
-    mode: 'history',
+    // mode: 'history',
     base: __dirname,
     routes
 })

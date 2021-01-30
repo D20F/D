@@ -76,15 +76,20 @@ export default [
     {
         text: "JS",
         icon: "mdi-emoticon-kiss-outline",
-        child: [{
-            text: "疑问",
-            to: '/js/doubt',
-            // child: [
-            //     {
-            //         text: "React",
-            //         to: '/vue/doubt'
-            //     },
-            // ],
-        }],
+        child: [
+            {
+                text: "疑问",
+                to: '/js/doubt',
+                // child: [
+                //     {
+                //         text: "React",
+                //         to: '/vue/doubt'
+                //     },
+                // ],
+            }, {
+                text: "视图 懒加载",
+                to: '/js/lazyLoading',
+            }
+        ],
     },
 ]
